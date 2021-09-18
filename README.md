@@ -139,4 +139,3 @@ Debug.Log("Current animation has a length of: " + length + " seconds");
 
 **When to use it:**
 When you want to know the length of the current animation.
-# Unity-Animation-Manager-UAM
