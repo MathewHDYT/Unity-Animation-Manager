@@ -15,6 +15,7 @@ Used to simply play animations without having to create transitions, while givin
   - [Installation](#installation)
 - [Documentation](#documentation)
   - [Reference to Animation Manager Script](#reference-to-animation-manager-script)
+  - [Possible Errors](#possible-errors)
   - [Inspiration](#inspiration)
   - [Public accesible methods](#public-accesible-methods)
   	- [Play Animation method](#play-animation-method)
@@ -75,6 +76,14 @@ private void Start() {
 }
 ```
 
+## Possible Errors
+
+| **ID** | **CONSTANT**                  | **MEANING**                                                                                    |
+| -------| ------------------------------| -----------------------------------------------------------------------------------------------|
+| 0      | SUCCESS                       | Method succesfully executed                                                                    |
+| 1      | ALREADY_PLAYING               | The given animation is already playing currently                                               |
+| 2      | DOES_NOT_EXIST                | Given animation does not exist on the given animator or layer                                  |
+
 ## Inspiration
 The creation of this Animation Manager has been inspired by the [Escaping Unity Animator HELL](https://youtu.be/nBkiSJ5z-hE) video.
 
@@ -83,7 +92,7 @@ This section explains all public accesible methods, especially what they do, how
 
 ### Play Animation method
 **What it does:**
-Starts playing the choosen animation if possible.
+Starts playing the choosen animation if possible and returns an AnimationError (see [Possible Errors](#possible-errors)), showing wheter and how playing the animation failed.
 
 **How to call it:**
 - ```Animator``` is the animator the given animation is contained in
@@ -97,7 +106,13 @@ Animator animator = gameObject.GetComponent<Animator>();
 string newAnimation = "Player_attack";
 int layer = 0;
 float startTime = 0.0f;
-am.PlayAnimation(animator, newAnimation, layer, startTime);
+AnimationManager.AninmationError err = am.PlayAnimation(animator, newAnimation, layer, startTime);
+if (err != AnimationManager.AninmationError.OK) {
+    Debug.Log("Playing animation failed with error id: ", err);
+}
+else {
+    Debug.Log("Playing animation successful");
+}
 ```
 
 Alternatively you can call the methods with less paramters as some of them have default arguments.
@@ -105,7 +120,13 @@ Alternatively you can call the methods with less paramters as some of them have 
 ```csharp
 Animator animator = gameObject.GetComponent<Animator>();
 string newAnimation = "Player_attack";
-am.PlayAnimation(animator, newAnimation);
+AnimationManager.AninmationError err = am.PlayAnimation(animator, newAnimation);
+if (err != AnimationManager.AninmationError.OK) {
+    Debug.Log("Playing animation failed with error id: ", err);
+}
+else {
+    Debug.Log("Playing animation successful");
+}
 ```
 
 **When to use it:**
