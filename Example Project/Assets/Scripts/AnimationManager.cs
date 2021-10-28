@@ -24,12 +24,10 @@ public class AnimationManager : MonoBehaviour {
     /// <summary>
     /// Enumeration of all possible AnimationErrors.
     /// </summary>
-    private struct AnimationError {
-        public enum Id {
-            AlreadyPlaying = 0,
-            DoesNotExist = 1,
-            Success = 2,
-        }
+    public enum AnimationError {
+        AlreadyPlaying = 0,
+        DoesNotExist = 1,
+        Success = 2,
     }
 
     /// <summary>
@@ -42,8 +40,8 @@ public class AnimationManager : MonoBehaviour {
     /// <param name="startTime">Time we want to start the Animation from.</param>
     /// <param name="layer">Layer we find the given Animation Name on.</param>
     /// <returns>AnimationError with all possible Error States of the function.</returns>
-    private AnimationError.Id ChangeAnimationState(Animator animator, string newAnimation, float delayTime, float startTime, int layer) {
-        AnimationError.Id message = AnimationError.Id.Success;
+    private AnimationError PlayAnimation(Animator animator, string newAnimation,  float delayTime = 0.0f, float startTime = 0.0f, int layer = 0) {
+        AnimationError message = AnimationError.Success;
 
         // Fetch the current Animation clips information for the base layer.
         List<AnimatorClipInfo> currentClipInfoList = new List<AnimatorClipInfo>();
@@ -62,11 +60,11 @@ public class AnimationManager : MonoBehaviour {
 
         // Check if we are already playing the newAnimation.
         if (string.Equals(currentAnimaton, newAnimation)) {
-            message = AnimationError.Id.AlreadyPlaying;
+            message = AnimationError.AlreadyPlaying;
         }
         // Check if the given Animator actually has the newAnimation at all.
         else if (!AnimationExists(animator, newAnimation)) {
-            message = AnimationError.Id.DoesNotExist;
+            message = AnimationError.DoesNotExist;
         }
         // Play the newAnimation at the given startTime.
         else {
@@ -74,37 +72,6 @@ public class AnimationManager : MonoBehaviour {
         }
 
         return message;
-    }
-
-    /// <summary>
-    /// Calls ChangeAnimationState and takes it's return message to Debug.Log a Warning.
-    /// </summary>
-    /// <param name="animator">Animator we wan't to call the Animations on.</param>
-    /// <param name="delayTime">Time until we want to start the Animation.</param>
-    /// <param name="startTime">Time we want to start the Animation from.</param>
-    /// <param name="layer">Layer we find the given Animation Name on.</param>
-    public void PlayAnimation(Animator animator, string newAnimation, float delayTime = 0.0f, float startTime = 0.0f, int layer = 0) {
-        string warning = string.Empty;
-
-        // Call ChangeAnimation and get the returnMessage.
-        AnimationError.Id message = ChangeAnimationState(animator, newAnimation, delayTime, startTime, layer);
-
-        switch (message) {
-            case AnimationError.Id.AlreadyPlaying:
-                // No Message
-                return;
-            case AnimationError.Id.DoesNotExist:
-                warning = "Given Animation Name does not exist  on the given Animator.";
-                break;
-            case AnimationError.Id.Success:
-                // No Message
-                return;
-            default:
-                warning = "Given AnimatonError State not defined.";
-                break;
-        }
-
-        Debug.LogWarning(warning);
     }
 
     /// <summary>
