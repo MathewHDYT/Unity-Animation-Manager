@@ -41,7 +41,7 @@ public class AnimationManager : MonoBehaviour {
     /// <param name="layer">Layer we find the given Animation Name on.</param>
     /// <returns>AnimationError with all possible Error States of the function.</returns>
     private AnimationError PlayAnimation(Animator animator, string newAnimation,  float delayTime = 0.0f, float startTime = 0.0f, int layer = 0) {
-        AnimationError message = AnimationError.Success;
+        AnimationError message = AnimationError.OK;
 
         // Fetch the current Animation clips information for the base layer.
         List<AnimatorClipInfo> currentClipInfoList = new List<AnimatorClipInfo>();
@@ -60,11 +60,11 @@ public class AnimationManager : MonoBehaviour {
 
         // Check if we are already playing the newAnimation.
         if (string.Equals(currentAnimaton, newAnimation)) {
-            message = AnimationError.AlreadyPlaying;
+            message = AnimationError.ALREADY_PLAYING;
         }
         // Check if the given Animator actually has the newAnimation at all.
         else if (!AnimationExists(animator, newAnimation)) {
-            message = AnimationError.DoesNotExist;
+            message = AnimationError.DOES_NOT_EXIST;
         }
         // Play the newAnimation at the given startTime.
         else {
