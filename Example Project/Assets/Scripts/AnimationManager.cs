@@ -25,9 +25,9 @@ public class AnimationManager : MonoBehaviour {
     /// Enumeration of all possible AnimationErrors.
     /// </summary>
     public enum AnimationError {
-        Success,
-        AlreadyPlaying,
-        DoesNotExist
+        OK,
+        ALREADY_PLAYING,
+        DOES_NOT_EXIST
     }
 
     /// <summary>
