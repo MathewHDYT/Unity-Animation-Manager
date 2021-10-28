@@ -28,15 +28,15 @@ public class MethodCalls : MonoBehaviour {
 
     private string GetStringFromError(AninmationManager.AnimationError error) {
         switch (error) {
-            case AnimationError.Id.AlreadyPlaying:
+            case AnimationError.OK:
                 // No Message
                 return;
-            case AnimationError.Id.DoesNotExist:
+            case AnimationError.ALREADY_PLAYING:
+                // No Message
+                return;
+            case AnimationError.DOES_NOT_EXIST:
                 warning = "Given Animation Name does not exist  on the given Animator.";
                 break;
-            case AnimationError.Id.Success:
-                // No Message
-                return;
             default:
                 warning = "Given AnimatonError State not defined.";
                 break;
