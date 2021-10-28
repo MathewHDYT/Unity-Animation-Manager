@@ -31,15 +31,15 @@ public class AnimationManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Plays the Animation with the given name on the given layer and with the given startTime,
-    /// if it isn't already playing and if it actually exist on the given Layer and Animator.
+    /// Plays the animation with the given name on the given layer and with the given startTime,
+    /// if it isn't already playing and if it actually exist on the given layer and animator.
     /// </summary>
-    /// <param name="animator">Animator we wan't to call the Animations on.</param>
-    /// <param name="newAnimation">Name of the Animation we wan't to play.</param>
-    /// <param name="delayTime">Time until we want to start the Animation.</param>
-    /// <param name="startTime">Time we want to start the Animation from.</param>
-    /// <param name="layer">Layer we find the given Animation Name on.</param>
-    /// <returns>AnimationError with all possible Error States of the function.</returns>
+    /// <param name="animator">Animator we wan't to call the animations on.</param>
+    /// <param name="newAnimation">Name of the animation we wan't to play.</param>
+    /// <param name="delayTime">Time until we want to start the animation.</param>
+    /// <param name="startTime">Time we want to start the animation from.</param>
+    /// <param name="layer">Layer we find the given animation name on.</param>
+    /// <returns>AnimationError, showing wheter and how playing the file failed.</returns>
     private AnimationError PlayAnimation(Animator animator, string newAnimation,  float delayTime = 0.0f, float startTime = 0.0f, int layer = 0) {
         AnimationError message = AnimationError.OK;
 
@@ -75,11 +75,11 @@ public class AnimationManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Check if the given Animator acutally contains the given AnimationClip.
+    /// Check if the given animator acutally contains the given animationClip.
     /// </summary>
     /// <param name="animator">Animator component to get all animationclips from.</param>
     /// <param name="newAnimation">Animation Name we want to check for.</param>
-    /// <returns>Boolean that is true if any clips in the given Animator have the given name.</returns>
+    /// <returns>Wheter any clips in the given animator have the given name.</returns>
     private bool AnimationExists(Animator animator, string newAnimation) {
         // Fetch all Animations from the given Animator.
         AnimationClip[] allclips = animator.runtimeAnimatorController.animationClips;
@@ -89,7 +89,7 @@ public class AnimationManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Get the Length of the Animation that is playing currently on the given Animator in the given Layer.
+    /// Get the length of the animation that is playing currently on the given animator in the given Layer.
     /// </summary>
     /// <param name="animator">Animator component to get all animationclips from.</param>
     /// <param name="layer">Layer we find the currently playing Animation on.</param>
