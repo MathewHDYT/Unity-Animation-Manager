@@ -17,7 +17,7 @@ public class MethodCalls : MonoBehaviour {
     }
 
     public void PlayAnimationClicked() {
-        AninmationManager.AninmationError error = am.PlayAnimation(animator, inputField.text);
+        AnimationManager.AninmationError error = am.PlayAnimation(animator, inputField.text);
         output.text = GetStringFromError(error);
     }
 
@@ -28,13 +28,13 @@ public class MethodCalls : MonoBehaviour {
 
     private string GetStringFromError(AninmationManager.AnimationError error) {
         switch (error) {
-            case AnimationError.OK:
+            case AnimationManager.AnimationError.OK:
                 // No Message
                 return;
-            case AnimationError.ALREADY_PLAYING:
+            case AnimationManager.AnimationError.ALREADY_PLAYING:
                 // No Message
                 return;
-            case AnimationError.DOES_NOT_EXIST:
+            case AnimationManager.AnimationError.DOES_NOT_EXIST:
                 warning = "Given Animation Name does not exist  on the given Animator.";
                 break;
             default:
