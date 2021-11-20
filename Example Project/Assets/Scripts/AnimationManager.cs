@@ -40,7 +40,7 @@ public class AnimationManager : MonoBehaviour {
     /// <param name="startTime">Time we want to start the animation from.</param>
     /// <param name="layer">Layer we find the given animation name on.</param>
     /// <returns>AnimationError, showing wheter and how playing the file failed.</returns>
-    private AnimationError PlayAnimation(Animator animator, string newAnimation,  float delayTime = 0.0f, float startTime = 0.0f, int layer = 0) {
+    public AnimationError PlayAnimation(Animator animator, string newAnimation,  float delayTime = 0.0f, float startTime = 0.0f, int layer = 0) {
         AnimationError message = AnimationError.OK;
 
         // Fetch the current Animation clips information for the base layer.

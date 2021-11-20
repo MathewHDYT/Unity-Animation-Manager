@@ -17,8 +17,8 @@ public class MethodCalls : MonoBehaviour {
     }
 
     public void PlayAnimationClicked() {
-        AnimationManager.AninmationError error = am.PlayAnimation(animator, inputField.text);
-        output.text = GetStringFromError(error);
+        AnimationManager.AnimationError err = am.PlayAnimation(animator, inputField.text);
+        output.text = GetStringFromError(err);
     }
 
     public void GetCurrentAnimationLengthClicked() {
@@ -26,20 +26,24 @@ public class MethodCalls : MonoBehaviour {
         output.text = "Length of the currently playing animation in seconds: " + length;
     }
 
-    private string GetStringFromError(AninmationManager.AnimationError error) {
-        switch (error) {
+    private string GetStringFromError(AnimationManager.AnimationError err) {
+        string warning = "";
+
+        switch (err) {
             case AnimationManager.AnimationError.OK:
-                // No Message
-                return;
+                warning = "Succesfully executed playing animation.";
+                break;
             case AnimationManager.AnimationError.ALREADY_PLAYING:
-                // No Message
-                return;
+                warning = "Method is already playing.";
+                break;
             case AnimationManager.AnimationError.DOES_NOT_EXIST:
                 warning = "Given Animation Name does not exist  on the given Animator.";
                 break;
             default:
-                warning = "Given AnimatonError State not defined.";
+                // Invalid AnimationManager.AnimationError argument.
                 break;
         }
+
+        return warning;
     }
 }
