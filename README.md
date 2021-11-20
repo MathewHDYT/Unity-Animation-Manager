@@ -108,7 +108,7 @@ int layer = 0;
 float startTime = 0.0f;
 AnimationManager.AninmationError err = am.PlayAnimation(animator, newAnimation, layer, startTime);
 if (err != AnimationManager.AninmationError.OK) {
-    Debug.Log("Playing animation failed with error id: ", err);
+    Debug.Log("Playing animation failed with error id: " + err);
 }
 else {
     Debug.Log("Playing animation successful");
@@ -122,7 +122,7 @@ Animator animator = gameObject.GetComponent<Animator>();
 string newAnimation = "Player_attack";
 AnimationManager.AninmationError err = am.PlayAnimation(animator, newAnimation);
 if (err != AnimationManager.AninmationError.OK) {
-    Debug.Log("Playing animation failed with error id: ", err);
+    Debug.Log("Playing animation failed with error id: " + err);
 }
 else {
     Debug.Log("Playing animation successful");
